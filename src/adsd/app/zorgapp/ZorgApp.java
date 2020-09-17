@@ -31,7 +31,7 @@ public class ZorgApp {
 
         // patient wordt aangemaakt, en later geimporteerd
 
-        patient = new Profile("joel", "soedito", 23, 75.6, 1.93);
+        patient = new Profile("Roy", "soedito", 23, 75.6, 1.93);
 
     }
 
