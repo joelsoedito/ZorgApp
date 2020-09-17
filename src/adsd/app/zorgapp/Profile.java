@@ -3,56 +3,57 @@ package adsd.app.zorgapp;
 public class Profile {
 
     // creërt de variabelen van profiel
-    private String voornaam;
-    private String achternaam;
-    private int leeftijd;
-    private double gewicht;
-    private double lengte;
+    private String firstname;
+    private String lastname;
+    private int age;
+    private double weight;
+    private double length;
+
 
     // Constructor   MAAK DIE ANDERE OOK NOG
 
-    public Profile(String voornaam, String achternaam, int leeftijd, double gewicht,double lengte) {
-        this.voornaam = voornaam;
-        this.achternaam = achternaam;
-        this.leeftijd = leeftijd;
-        this.gewicht = gewicht;
-        this.lengte = lengte;
+    public Profile(String firstname, String lastname, int age, double weight,double length) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.age = age;
+        this.weight = weight;
+        this.length = length;
 
     }
 
     // Dit is om de variabelen te schrijven en op te halen
-    public void setVoornaam(String voorNaam) {
-        this.voornaam = voorNaam;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
-    public void setachterNaam(String achterNaam) {
-        this.achternaam = achterNaam;
+    public void setLastname (String lastname) {
+        this.lastname = lastname;
     }
-    public void setleefTijd(int leefTijd){
-        this.leeftijd = leefTijd;
+    public void setAge(int age){
+        this.age = age;
     }
-    public void setGewicht(double gewicht) {
-        this.gewicht = gewicht;
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
-    public void setlengte(double lengte) {
-        this.lengte = lengte;
+    public void setlength(double length) {
+        this.length = length;
     }
-    public String getVoornaam() {
-        return this.voornaam;
+    public String getFirstname() {
+        return this.firstname;
     }
-    public String getAchternaam() {
-        return this.achternaam;
+    public String getLastname() {
+        return this.lastname;
     }
-    public int getLeeftijd() {
-        return this.leeftijd;
+    public int getAge() {
+        return this.age;
     }
-    public double getGewicht(){
-        return this.gewicht;
+    public double getWeight(){
+        return this.weight;
     }
-    public double getLengte(){
-        return this.lengte;
+    public double getLength(){
+        return this.length;
     }
-    public String getBmi(){
-        return String.valueOf(gewicht / (lengte * lengte));
+    public double getBmi(){
+        return (weight / (length * length));
     }
 
 }

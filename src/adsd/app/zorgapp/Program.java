@@ -7,7 +7,7 @@ public class Program {
     public static void main(String[] args) {
         // zorgapp aanroepen bij new zorgapp
         zorgapp = new ZorgApp();
-        zorgapp.Login);
+        zorgapp.Login();
 
 
 
