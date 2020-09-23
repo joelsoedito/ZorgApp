@@ -10,7 +10,7 @@ public class Profile {
     private double length;
 
 
-    // Constructor   MAAK DIE ANDERE OOK NOG
+    // Constructor
 
     public Profile(String firstname, String lastname, int age, double weight,double length) {
         this.firstname = firstname;
