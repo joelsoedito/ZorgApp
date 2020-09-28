@@ -1,18 +1,26 @@
 package adsd.app.zorgapp;
 
+import java.util.ArrayList;
+
 public class Profile {
 
-    // creërt de variabelen van profiel
+    // Attributes
     private String firstname;
     private String lastname;
     private int age;
     private double weight;
     private double length;
 
+    //todo namen veranderen naar duidelijke lijst namen
+
+    public ArrayList<Integer> PatientMedicijnen = new ArrayList<Integer>();
+
+
 
     // Constructor
 
     public Profile(String firstname, String lastname, int age, double weight,double length) {
+
         this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
@@ -20,6 +28,15 @@ public class Profile {
         this.length = length;
 
     }
+
+    // add medicijnen / remove medicijnen
+
+    public void addMedicijn(int i) {
+        PatientMedicijnen.add(i);
+
+    }
+
+
 
     // Dit is om de variabelen te schrijven en op te halen
     public void setFirstname(String firstname) {

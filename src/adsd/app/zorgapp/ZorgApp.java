@@ -1,37 +1,76 @@
 package adsd.app.zorgapp;
 
+
 import java.util.ArrayList;
 import java.util.Scanner;
+
+
 
 public class ZorgApp {
 
     // scanner zodat ie in alles gebruikt kan worden
     Scanner in = new Scanner(System.in);
 
-    // maakt nieuwe instance van profile
+    // attributen
 
-    private Profile patient;
-    private Medicine medicine;
-
+    private Profil
 
 
+
+
+    /*
+    private int patientID;
+    // private int user;
+
+    // create ArrayLists
+    private ArrayList<Profile> ProfileList = new ArrayList<>();
+    private ArrayList<Medicine> MedicineList = new ArrayList<>();
+
+
+     */
     public void Login() {
         boolean exit = false;
-        // creert patient profiel.
-        patient = new Profile("Joel", "Soedito", 23, 75.6, 1.93);
 
 
+        //todo Zorgen dat dit in ProfileList Class en MedicineList Class staat
+        /*
+        patient0 = new Profile("Joel", "Soedito", 23, 75.6, 1.93);
+        patient1 = new Profile("Ruud", "Koekoek", 56, 80.3, 1.64);
 
-        //Vraag gebruiker wie hij is, in latere versie hier naar patient nummer oid vragen
+
+        ProfileList.add(patient0);
+        ProfileList.add(patient1);
+
+        patient0.addMedicijn(0);
+        patient0.addMedicijn(1);
+
+        patient1.addMedicijn(1);
+
+        med1 = new Medicine("Ibuprofen", "Pijnstiller", "Sterk", "max. 40 per dag");
+        med2 = new Medicine("Paracetamol", "Pijnstiller", "licht", "Max. 3 per jaar");
+
+        MedicineList.add(med1);
+        MedicineList.add(med2);
+
+        */
+
+
+    // Login Menu
+
         System.out.println("Bent u een Zorgverlener [1] of een Patiënt [2]?");
         do {
             switch (in.nextLine()) {
                 case "1":
+                    //todo zorgen dat alleen cijfers ingevoerd kunnen worden
+                    System.out.println("\nVoer het patient ID in:");
+                    patientID = in.nextInt();
                     ZorverlenerMenu();
                     exit = true;
                     break;
 
                 case "2":
+                    System.out.println("\nVoer het patient ID in:");
+                    patientID = in.nextInt();
                     PatientenMenu();
                     exit = true;
                     break;
@@ -41,35 +80,38 @@ public class ZorgApp {
             }
         }
         while (!exit);
+
+
+
     }
+
+    // Zorgverlener Menu
 
     private void ZorverlenerMenu() {
 
-        // patient zoeken
-        // System.out.println("\nVoer het patient ID in");
 
         //gegevens weergeven
-        System.out.println("\nMaak uw keuze: \n[1] Gegevens bekijken \n[2] Gegevens Wijzigen \n[3] Medicijnen bekijken \n[4] Medicijnen wijzigen");
+        PrintDetails();
+
+        System.out.println("\nMaak uw keuze: \n[1] Gegevens Wijzigen \n[2] Medicijnen bekijken \n[3] Medicijnen wijzigen");
         boolean exit3 = false;
         do {
             switch (in.nextLine()) {
                 case "1":
-                    PrintDetails();
+                    EditDetailsMenu();
                     ZorverlenerMenu();
                     exit3 = true;
                     break;
                 case "2":
-                    EditDetailsMenu();
+                    PrintMedication();
                     ZorverlenerMenu();
                     exit3 = true;
                     break;
 
                 case "3":
-                    // Medicijnen weergeven
+                    EditMedicationMenu();
                     break;
-                case "4":
-                    // Medicijnen wijzigen
-                    break;
+
                 default:
                     System.out.println("Maak een keuze door een cijfer in te toetsen");
                     break;
@@ -77,24 +119,25 @@ public class ZorgApp {
         } while (!exit3);
     }
 
+    // Patienten Menu
     private void PatientenMenu(){
-        System.out.println("\nMaak uw keuze: \n[1] Gegevens bekijken \n[2] Gegevens Wijzigen \n[3] Medicijnen bekijken");
+
+        // Gegevens weergeven
+        PrintDetails();
+
+        System.out.println("\nMaak uw keuze: \n[1] Gegevens Wijzigen \n[2] Medicijnen bekijken");
         boolean exit4 = false;
         do {
             switch (in.nextLine()) {
                 case "1":
-                    PrintDetails();
-                    PatientenMenu();
-                    exit4 = true;
-                    break;
-                case "2":
                     EditDetailsMenu();
                     PatientenMenu();
                     exit4 = true;
                     break;
-
-                case "3":
-                    // Medicijnen weergeven
+                case "2":
+                    PrintMedication();
+                    PatientenMenu();
+                    exit4 = true;
                     break;
                 default:
                     System.out.println("Maak een keuze door een cijfer in te toetsen");
@@ -105,34 +148,13 @@ public class ZorgApp {
     }
 
 
-    /*public void EditOption() {
-        boolean exit2 = false;
-        System.out.println("Wilt u uw gegevens wijzigen? Ja [1] of Nee [2]");
-        do {
-
-            switch (in.nextLine()) {
-                case "1":
-                    EditDetails();
-                    exit2 = true;
-                    break;
-                case "2":
-                    exit2 = true;
-                    System.out.println("Tot ziens!");
-                    break;
-                default:
-                    System.out.println("Voer Ja [1] of Nee [2] in.");
-                    break;
-            }
-        }
-        while (!exit2);
-
-    }
-    */
-
 
     private void EditDetailsMenu() {
+        //todo onderscheid maken tussen zorgverlener en patient
         //gegevens bewerken
-        System.out.println("\nWelke gegevens wilt u wijzigen? \n[1] Voornaam \n[2] Achternaam \n[3] Leeftijd \n[4] Gewicht \n[5] Lengte \n[6] Alle gegevens");
+            System.out.println("\nWelke gegevens wilt u wijzigen? \n[1] Voornaam \n[2] Achternaam \n[3] Leeftijd \n[4] Gewicht \n[5] Lengte \n[6] Alle gegevens");
+
+
         boolean exit2 = true;
         do {
             switch (in.nextLine()) {
@@ -179,7 +201,7 @@ public class ZorgApp {
             System.out.print("Voer voornaam in en druk op \"Enter\": ");
         }
         String firstname = in.nextLine();
-        patient.setFirstname(firstname);
+        ProfileList.get(patientID).setFirstname(firstname);
     }
 
     public void EditLastName() {
@@ -192,7 +214,7 @@ public class ZorgApp {
         }
 
         String lastname = in.nextLine();
-        patient.setLastname(lastname);
+        ProfileList.get(patientID).setLastname(lastname);
     }
 
     public void EditAge() {
@@ -204,7 +226,7 @@ public class ZorgApp {
             System.out.print("Voer uw leeftijd in en druk op  \"Enter\": ");
         }
         int age = in.nextInt();
-        patient.setAge(age);
+        ProfileList.get(patientID).setAge(age);
     }
 
     public void EditWeight() {
@@ -216,7 +238,7 @@ public class ZorgApp {
             System.out.print("Voer uw gewicht in kg in en druk op \"Enter\": ");
         }
         int weight = in.nextInt();
-        patient.setWeight(weight);
+        ProfileList.get(patientID).setWeight(weight);
     }
 
     public void EditLength() {
@@ -228,23 +250,48 @@ public class ZorgApp {
             System.out.print("Voer uw lengte in cm in en druk op \"Enter\": ");
         }
         double meters = in.nextInt();
-        patient.setlength(meters / 100);
+        ProfileList.get(patientID).setlength(meters/100);
+
     }
 
+    public void EditMedicationMenu() {
+
+        System.out.println(" Welk medicijn wilt u wijzigen:");
+
+
+
+        //todo Menu maken waar je kan kiezen welk medicijn je wilt wijzigen en of je er 1 wilt toevoegen
+    }
 
 
     public void PrintDetails() {
 
 
         System.out.println("\nGegevens van de patiënt:");
-        System.out.println("Naam: " + patient.getFirstname().substring(0, 1).toUpperCase()
-                + patient.getFirstname().substring(1).toLowerCase()
+        System.out.println("Naam:           " + ProfileList.get(patientID).getFirstname().substring(0, 1).toUpperCase()
+                + ProfileList.get(patientID).getFirstname().substring(1).toLowerCase()
                 + " "
-                + patient.getLastname().substring(0, 1).toUpperCase() + patient.getLastname().substring(1).toLowerCase());
-        System.out.println("Leeftijd: " + patient.getAge() + " jaar");
-        System.out.println("Lengte: " + patient.getLength() + "m");
-        System.out.println("Gewicht: " + patient.getWeight() + "kg");
-        System.out.println("Uw BMI is: " + String.format("%.1f", patient.getBmi()) + "\n");
+                + ProfileList.get(patientID).getLastname().substring(0, 1).toUpperCase() + ProfileList.get(patientID).getLastname().substring(1).toLowerCase());
+        System.out.println("Leeftijd:       " + ProfileList.get(patientID).getAge() + " jaar");
+        System.out.println("Lengte:         " + ProfileList.get(patientID).getLength() + "m");
+        System.out.println("Gewicht:        " + ProfileList.get(patientID).getWeight() + "kg");
+        System.out.println("Uw BMI is:      " + String.format("%.1f", ProfileList.get(patientID).getBmi()) + "\n");
     }
+
+    public void PrintMedication() {
+
+        //todo use for loop to print arraylists
+
+        for (int i : ProfileList.get(patientID).PatientMedicijnen) {
+
+
+            System.out.println("\nMedicatie gegevens: ");
+            System.out.println("Medcijnnaam:    " + MedicineList.get(i).getMedicineName());
+            System.out.println("Beschrijving:   " + MedicineList.get(i).getDescription());
+            System.out.println("Type:           " + MedicineList.get(i).getType());
+            System.out.println("Dose:           " + MedicineList.get(i).getDose());
+        }
+    }
+
 }
 

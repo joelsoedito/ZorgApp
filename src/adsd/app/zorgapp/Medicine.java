@@ -1,7 +1,5 @@
 package adsd.app.zorgapp;
 
-import java.util.ArrayList;
-
 public class Medicine {
 
     //variablen voor medicijn
@@ -10,21 +8,20 @@ public class Medicine {
     private String type;
     private String dose;
 
-    String medicine;
-    ArrayList<Medicine> MedicineList = new ArrayList<Medicine>();
-    /*constructor voor medicijn
-    public Medicine( String medicineName, String description, String type, String dose){
+
+    //constructor voor medicijn
+    public Medicine(String medicineName, String description, String type, String dose) {
         this.medicineName = medicineName;
         this.description = description;
         this.type = type;
         this.dose = dose;
+    }
 
-     */
 
 
 
     //getters en setters voor medicijn
-    public void setMedicineName(String medicineName){
+    public void setMedicineName(String medicineName ) {
         this.medicineName = medicineName;
     }
     public void setDescription(String description){
@@ -46,6 +43,6 @@ public class Medicine {
         return this.type;
     }
     public String getDose(){
-        return this.type;
+        return this.dose;
     }
 }
