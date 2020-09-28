@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class ProfileList {
 
+    /*
     // Attributen
     private ArrayList<Profile> ProfileList = new ArrayList<>();
     private MedicineList Medicinelist;
@@ -26,5 +27,5 @@ public class ProfileList {
     public ArrayList <Profile> getProfileList{
         return ProfileList;
     }
-
+ */
 }

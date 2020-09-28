@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class MedicineList {
 
+    /*
     // Atributen
     private ArrayList<Medicine> MedicineList = new ArrayList<>();
 

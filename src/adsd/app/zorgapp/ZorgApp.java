@@ -11,48 +11,42 @@ public class ZorgApp {
     // scanner zodat ie in alles gebruikt kan worden
     Scanner in = new Scanner(System.in);
 
-    // attributen
-
-    private Profil
-
-
-
-
-    /*
     private int patientID;
-    // private int user;
+
 
     // create ArrayLists
     private ArrayList<Profile> ProfileList = new ArrayList<>();
     private ArrayList<Medicine> MedicineList = new ArrayList<>();
 
 
-     */
+
     public void Login() {
         boolean exit = false;
 
 
+
         //todo Zorgen dat dit in ProfileList Class en MedicineList Class staat
-        /*
-        patient0 = new Profile("Joel", "Soedito", 23, 75.6, 1.93);
-        patient1 = new Profile("Ruud", "Koekoek", 56, 80.3, 1.64);
+
+        // attributen
+        Profile patient0 = new Profile("Joel", "Soedito", 23, 75.6, 1.93);
+        Profile patient1 = new Profile("Ruud", "Koekoek", 56, 80.3, 1.64);
 
 
         ProfileList.add(patient0);
         ProfileList.add(patient1);
 
-        patient0.addMedicijn(0);
-        patient0.addMedicijn(1);
+        patient0.addMedicine(0);
+        patient0.addMedicine(1);
 
-        patient1.addMedicijn(1);
+        patient1.addMedicine(1);
 
-        med1 = new Medicine("Ibuprofen", "Pijnstiller", "Sterk", "max. 40 per dag");
-        med2 = new Medicine("Paracetamol", "Pijnstiller", "licht", "Max. 3 per jaar");
+        Medicine med1 = new Medicine("Ibuprofen", "Pijnstiller", "Sterk", "max. 40 per dag");
+        Medicine med2 = new Medicine("Paracetamol", "Pijnstiller", "licht", "Max. 3 per jaar");
 
         MedicineList.add(med1);
         MedicineList.add(med2);
 
-        */
+
 
 
     // Login Menu
@@ -282,7 +276,7 @@ public class ZorgApp {
 
         //todo use for loop to print arraylists
 
-        for (int i : ProfileList.get(patientID).PatientMedicijnen) {
+        for (int i : ProfileList.get(patientID).PatientMedicines) {
 
 
             System.out.println("\nMedicatie gegevens: ");

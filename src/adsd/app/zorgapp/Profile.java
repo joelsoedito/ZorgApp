@@ -13,7 +13,7 @@ public class Profile {
 
     //todo namen veranderen naar duidelijke lijst namen
 
-    public ArrayList<Integer> PatientMedicijnen = new ArrayList<Integer>();
+    public ArrayList<Integer> PatientMedicines = new ArrayList<Integer>();
 
 
 
@@ -31,8 +31,8 @@ public class Profile {
 
     // add medicijnen / remove medicijnen
 
-    public void addMedicijn(int i) {
-        PatientMedicijnen.add(i);
+    public void addMedicine(int i) {
+        PatientMedicines.add(i);
 
     }
 
