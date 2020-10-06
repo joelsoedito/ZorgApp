@@ -10,35 +10,35 @@ public class Profile {
     private int age;
     private double weight;
     private double length;
-
-    //todo namen veranderen naar duidelijke lijst namen
+    private int profileID;
 
     public ArrayList<Integer> PatientMedicines = new ArrayList<Integer>();
 
-
-
-    // Constructor
-
-    public Profile(String firstname, String lastname, int age, double weight,double length) {
-
+    // Constructor for Profile
+    public Profile(String firstname, String lastname, int age, double weight,double length, int profileID){
         this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
         this.weight = weight;
         this.length = length;
-
+        this.profileID = profileID;
     }
 
-    // add medicijnen / remove medicijnen
-
+    // Add, Remove and Index Methods for Medicines on MedicineList
+    //todo Create index method to show how many Medicines are on the List
     public void addMedicine(int i) {
         PatientMedicines.add(i);
-
+    }
+    public void removeMedicine(int i) {
+        PatientMedicines.remove(i);
     }
 
+    //todo make patientMedicines private
+    public ArrayList<Integer> getPatientMedicines() {
+        return PatientMedicines;
+    }
 
-
-    // Dit is om de variabelen te schrijven en op te halen
+    // Getters and Setters for Medicne
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
@@ -53,6 +53,9 @@ public class Profile {
     }
     public void setlength(double length) {
         this.length = length;
+    }
+    public void setProfileID(int profileID){
+        this.profileID = profileID;
     }
     public String getFirstname() {
         return this.firstname;
@@ -72,6 +75,8 @@ public class Profile {
     public double getBmi(){
         return (weight / (length * length));
     }
-
+    public int getProfileID(){
+        return this.profileID;
+    }
 }
 

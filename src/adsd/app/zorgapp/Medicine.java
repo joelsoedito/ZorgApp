@@ -2,25 +2,26 @@ package adsd.app.zorgapp;
 
 public class Medicine {
 
-    //variablen voor medicijn
+    //Attributes for Medicine
     private String medicineName;
     private String description;
     private String type;
     private String dose;
+    private int medicineID;
 
-
-    //constructor voor medicijn
-    public Medicine(String medicineName, String description, String type, String dose) {
+    //Constructor for Medicine
+    public Medicine(String medicineName, String description, String type, String dose, int medicineID) {
         this.medicineName = medicineName;
         this.description = description;
         this.type = type;
         this.dose = dose;
+        this.medicineID = medicineID;
     }
 
 
 
 
-    //getters en setters voor medicijn
+    //Getters and Setters for Medicine
     public void setMedicineName(String medicineName ) {
         this.medicineName = medicineName;
     }
@@ -45,4 +46,8 @@ public class Medicine {
     public String getDose(){
         return this.dose;
     }
+    public int getMedicineID(){
+        return this.medicineID;
+    }
+
 }
