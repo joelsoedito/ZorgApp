@@ -18,9 +18,6 @@ public class Medicine {
         this.medicineID = medicineID;
     }
 
-
-
-
     //Getters and Setters for Medicine
     public void setMedicineName(String medicineName ) {
         this.medicineName = medicineName;

@@ -12,10 +12,12 @@ public class Profile {
     private double length;
     private int profileID;
 
-    public ArrayList<Integer> PatientMedicines = new ArrayList<Integer>();
+    public ArrayList<Integer> PatientMedicines = new ArrayList<>();
+    public ArrayList<Measurement> PatientWeightList = new ArrayList<>();
+    //todo rename list smoll letters
 
     // Constructor for Profile
-    public Profile(String firstname, String lastname, int age, double weight,double length, int profileID){
+    public Profile(String firstname, String lastname, int age, double weight, double length, int profileID) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
@@ -24,11 +26,25 @@ public class Profile {
         this.profileID = profileID;
     }
 
+    // Add, remove and index of Measurments list.
+    public void addWeightMeasurment(Measurement newEntry)  {
+        PatientWeightList.add(newEntry);
+    }
+    public void removeWeightMeasurment(int i){
+        PatientWeightList.remove(i);
+    }
+
+    public ArrayList<Measurement> getPatientWeightList(Measurement i) {
+        return PatientWeightList;
+    }
+
+
     // Add, Remove and Index Methods for Medicines on MedicineList
     //todo Create index method to show how many Medicines are on the List
     public void addMedicine(int i) {
         PatientMedicines.add(i);
     }
+
     public void removeMedicine(int i) {
         PatientMedicines.remove(i);
     }
@@ -38,45 +54,61 @@ public class Profile {
         return PatientMedicines;
     }
 
+
     // Getters and Setters for Medicne
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
-    public void setLastname (String lastname) {
+
+    public void setLastname(String lastname) {
         this.lastname = lastname;
     }
-    public void setAge(int age){
+
+    public void setAge(int age) {
         this.age = age;
     }
+
     public void setWeight(double weight) {
         this.weight = weight;
     }
+
     public void setlength(double length) {
         this.length = length;
     }
-    public void setProfileID(int profileID){
+
+    public void setProfileID(int profileID) {
         this.profileID = profileID;
     }
+
     public String getFirstname() {
         return this.firstname;
     }
+
     public String getLastname() {
         return this.lastname;
     }
+
     public int getAge() {
         return this.age;
     }
-    public double getWeight(){
+
+    public double getWeight() {
         return this.weight;
     }
-    public double getLength(){
+
+    public double getLength() {
         return this.length;
     }
-    public double getBmi(){
+
+    public double getBmi() {
         return (weight / (length * length));
     }
-    public int getProfileID(){
+
+    public int getProfileID() {
         return this.profileID;
     }
+
 }
+
+
 

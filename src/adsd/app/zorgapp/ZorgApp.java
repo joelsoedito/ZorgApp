@@ -1,5 +1,6 @@
 package adsd.app.zorgapp;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -7,45 +8,23 @@ import java.util.Scanner;
 
 public class ZorgApp {
 
-    // import scanner for use throughout the program
+
     private Scanner in = new Scanner(System.in);
     private int patientID;
 
-
-    // create ArrayLists
-    private HashMap<Integer, Profile> ProfileMap = new HashMap<>();
-    private HashMap<Integer, Medicine> MedicineList = new HashMap<>();
+    private ProfileList profileMap;
+    private MedicineList medicineList;
+    private Measurement measurement;
 
 
     public void Login() {
+
         boolean exit = false;
-
-
-        //todo create ProfileList Class and MedicineList Class and import to ZorgApp
-
-        // Attributen
-        Profile patient0 = new Profile("Joel", "Soedito", 23, 75.6, 1.93, 1111);
-        Profile patient1 = new Profile("Ruud", "Koekoek", 56, 80.3, 1.64, 2222);
-
-
-        ProfileMap.put(patient0.getProfileID(), patient0);
-        ProfileMap.put(patient1.getProfileID(), patient1);
-
-        patient0.addMedicine(10);
-        patient0.addMedicine(20);
-        patient1.addMedicine(20);
-
-        Medicine med1 = new Medicine("Ibuprofen", "Pijnstiller", "Sterk", "max. 40 per dag", 10);
-        Medicine med2 = new Medicine("Paracetamol", "Pijnstiller", "licht", "Max. 3 per jaar", 20);
-
-        MedicineList.put(med1.getMedicineID(), med1);
-        MedicineList.put(med2.getMedicineID(), med2);
-
-
+        profileMap = new ProfileList();
+        medicineList = new MedicineList();
 
 
         // Login Menu
-        //todo move placement of PatientID in program.
         System.out.println("Bent u een Zorgverlener [1] of een Patiënt [2]?");
         do {
             switch (in.nextLine()) {
@@ -82,16 +61,15 @@ public class ZorgApp {
 
     // Zorgverlener Menu
     private void ZorgverlenerMenu() {
-        //todo if statement die rekening houd met patient of vzorgverelener
-
-
-        System.out.println("\nMaak uw keuze: \n[1] Gegevens weergeven \n[2] Gegevens Wijzigen \n[3] Medicijnen bekijken \n[4] Medicijnen toevoegen \n[5] Andere Patient \n[6] Afsluiten");
+        System.out.println("\nMaak uw keuze: \n[1] Gegevens weergeven \n[2] Gegevens Wijzigen \n[3] Medicijnen bekijken \n[4] Medicijnen toevoegen \n[5] Laat gewicht zien a mattie \n[6] Andere Patient \n[7] Afsluiten");
         boolean exit3 = false;
         do {
             switch (in.nextLine()) {
                 case "1":
                     PrintDetails();
                     ZorgverlenerMenu();
+                    exit3 = true;
+                    break;
                 case "2":
                     EditDetailsMenuZ();
                     ZorgverlenerMenu();
@@ -108,11 +86,16 @@ public class ZorgApp {
                     exit3 = true;
                     break;
                 case "5":
-                    ChoosePatientID();
+                    ShowWeightMeasurments();
                     ZorgverlenerMenu();
                     exit3 = true;
                     break;
                 case "6":
+                    ChoosePatientID();
+                    ZorgverlenerMenu();
+                    exit3 = true;
+                    break;
+                case "7":
                     System.out.println("Bedankt en tot ziens!");
                     exit3 = true;
                     break;
@@ -156,7 +139,6 @@ public class ZorgApp {
 
 
     // Edit patient details
-    // todo create difference between Zorgverlener and Patient, give patient less options to edit
 
     private void EditDetailsMenuZ() {
         System.out.println("\nWelke gegevens wilt u wijzigen? \n[1] Voornaam \n[2] Achternaam \n[3] Leeftijd \n[4] Gewicht \n[5] Lengte \n[6] Alle gegevens");
@@ -246,7 +228,7 @@ public class ZorgApp {
             System.out.print("Voer voornaam in en druk op \"Enter\": ");
         }
         String firstname = in.nextLine();
-        ProfileMap.get(patientID).setFirstname(firstname);
+        profileMap.getProfileMap().get(patientID).setFirstname(firstname);
     }
 
     // Edit Lastname method
@@ -259,7 +241,7 @@ public class ZorgApp {
         }
 
         String lastname = in.nextLine();
-        ProfileMap.get(patientID).setLastname(lastname);
+        profileMap.getProfileMap().get(patientID).setLastname(lastname);
     }
 
     // Edit age method
@@ -271,7 +253,7 @@ public class ZorgApp {
             System.out.print("Voer uw leeftijd in en druk op  \"Enter\": ");
         }
         int age = in.nextInt();
-        ProfileMap.get(patientID).setAge(age);
+        profileMap.getProfileMap().get(patientID).setAge(age);
     }
 
     // Edit Weight Method
@@ -283,7 +265,7 @@ public class ZorgApp {
             System.out.print("Voer uw gewicht in kg in en druk op \"Enter\": ");
         }
         int weight = in.nextInt();
-        ProfileMap.get(patientID).setWeight(weight);
+        profileMap.getProfileMap().get(patientID).setWeight(weight);
     }
 
     // Edit Length Method
@@ -295,13 +277,10 @@ public class ZorgApp {
             System.out.print("Voer uw lengte in cm in en druk op \"Enter\": ");
         }
         double centimeters = in.nextInt();
-        ProfileMap.get(patientID).setlength(centimeters / 100);
+        profileMap.getProfileMap().get(patientID).setlength(centimeters / 100);
 
     }
 
-    // Edit Medication menu
-    //todo create methods to show full MedicineList
-    //todo create method to edit item from MedicineList
 
     // Add new medication to patient
     public void AddMedicationMenu() {
@@ -312,33 +291,49 @@ public class ZorgApp {
             System.out.println("Voer een medicijnnummer in dat uw wilt toevoegen:");
         }
         int newmed = in.nextInt();
-        ProfileMap.get(patientID).addMedicine(newmed);
+        profileMap.getProfileMap().get(patientID).addMedicine(newmed);
+    }
+
+    public void ShowWeightMeasurments(){
+        ArrayList<Measurement> PatientWeightList = profileMap.getProfileMap().get(patientID).getPatientWeightList(measurement);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        System.out.println("Gewicht meetpunten:");
+
+        for (int i = 0; i < PatientWeightList.size(); i++) {
+            System.out.println("Op " + dateTimeFormatter.format(PatientWeightList.get(i).getDate()) + " was het gewicht: " + PatientWeightList.get(i).getMeasureWeight() + "kg");
+        }
     }
 
     // Method to print patient Details
     public void PrintDetails() {
+        HashMap<Integer, Profile> profilemap = profileMap.getProfileMap();
+
         System.out.println("\nGegevens van de patiënt:");
-        System.out.println("Naam:           " + ProfileMap.get(patientID).getFirstname().substring(0, 1).toUpperCase()
-                + ProfileMap.get(patientID).getFirstname().substring(1).toLowerCase()
+        System.out.println("Naam:           " + profilemap.get(patientID).getFirstname().substring(0, 1).toUpperCase()
+                + profilemap.get(patientID).getFirstname().substring(1).toLowerCase()
                 + " "
-                + ProfileMap.get(patientID).getLastname().substring(0, 1).toUpperCase() + ProfileMap.get(patientID).getLastname().substring(1).toLowerCase());
-        System.out.println("Leeftijd:       " + ProfileMap.get(patientID).getAge() + " jaar");
-        System.out.println("Lengte:         " + ProfileMap.get(patientID).getLength() + "m");
-        System.out.println("Gewicht:        " + ProfileMap.get(patientID).getWeight() + "kg");
-        System.out.println("Uw BMI is:      " + String.format("%.1f", ProfileMap.get(patientID).getBmi()) + "\n");
+                + profilemap.get(patientID).getLastname().substring(0, 1).toUpperCase() + profileMap.getProfileMap().get(patientID).getLastname().substring(1).toLowerCase());
+        System.out.println("Leeftijd:       " + profilemap.get(patientID).getAge() + " jaar");
+        System.out.println("Lengte:         " + profilemap.get(patientID).getLength() + "m");
+        System.out.println("Gewicht:        " + profilemap.get(patientID).getWeight() + "kg");
+        System.out.println("Uw BMI is:      " + String.format("%.1f", profilemap.get(patientID).getBmi()) + "\n");
     }
 
     // Method to print Medication
     public void PrintMedication() {
-        for (int i : ProfileMap.get(patientID).PatientMedicines) {
+        for (int i : profileMap.getProfileMap().get(patientID).PatientMedicines) {
             System.out.println("\nMedicatie gegevens: ");
-            System.out.println("Medcijnnaam:    " + MedicineList.get(i).getMedicineName());
-            System.out.println("Beschrijving:   " + MedicineList.get(i).getMedicineName());
-            System.out.println("Type:           " + MedicineList.get(i).getMedicineName());
-            System.out.println("Dose:           " + MedicineList.get(i).getMedicineName());
+            System.out.println("Medcijnnaam:    " + medicineList.getMedicineList().get(i).getMedicineName());
+            System.out.println("Beschrijving:   " + medicineList.getMedicineList().get(i).getDescription());
+            System.out.println("Type:           " + medicineList.getMedicineList().get(i).getType());
+            System.out.println("Dose:           " + medicineList.getMedicineList().get(i).getDose());
         }
 
     }
+
+
+
 
 }
 
