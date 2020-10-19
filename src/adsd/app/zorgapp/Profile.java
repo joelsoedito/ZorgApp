@@ -2,6 +2,7 @@ package adsd.app.zorgapp;
 
 import java.util.ArrayList;
 
+
 public class Profile {
 
     // Attributes
@@ -12,9 +13,9 @@ public class Profile {
     private double length;
     private int profileID;
 
-    public ArrayList<Integer> PatientMedicines = new ArrayList<>();
-    public ArrayList<Measurement> PatientWeightList = new ArrayList<>();
-    //todo rename list smoll letters
+    public ArrayList<Integer> patientmedicines = new ArrayList<>();
+    public ArrayList<Measurement> patientweightlist = new ArrayList<>();
+    private MedicineList medicineList;
 
     // Constructor for Profile
     public Profile(String firstname, String lastname, int age, double weight, double length, int profileID) {
@@ -28,30 +29,31 @@ public class Profile {
 
     // Add, remove and index of Measurments list.
     public void addWeightMeasurment(Measurement newEntry)  {
-        PatientWeightList.add(newEntry);
+        patientweightlist.add(newEntry);
     }
     public void removeWeightMeasurment(int i){
-        PatientWeightList.remove(i);
+        patientweightlist.remove(i);
     }
 
     public ArrayList<Measurement> getPatientWeightList(Measurement i) {
-        return PatientWeightList;
+        return patientweightlist;
     }
 
 
     // Add, Remove and Index Methods for Medicines on MedicineList
     //todo Create index method to show how many Medicines are on the List
     public void addMedicine(int i) {
-        PatientMedicines.add(i);
+
+        patientmedicines.add(i);
     }
 
     public void removeMedicine(int i) {
-        PatientMedicines.remove(i);
+        patientmedicines.remove(i);
     }
 
     //todo make patientMedicines private
-    public ArrayList<Integer> getPatientMedicines() {
-        return PatientMedicines;
+    public ArrayList<Integer> getPatientmedicines() {
+        return patientmedicines;
     }
 
 

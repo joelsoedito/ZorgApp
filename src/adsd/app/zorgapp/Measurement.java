@@ -1,8 +1,6 @@
 package adsd.app.zorgapp;
 
 import java.time.*;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class Measurement {
 
@@ -11,13 +9,18 @@ public class Measurement {
     private LocalDate date;
 
 
-    public Measurement(LocalDate date, double weight){
+    public Measurement(LocalDate date, String time, double weight){
        this.date = date;
+       this.time = time;
        this.weight = weight;
     }
 
     public void setDate(LocalDate date){
         this.date = date;
+    }
+
+    public void setTime(String time){
+        this.time = time;
     }
 
     public void setMeasureWeight(double weight){
@@ -28,9 +31,14 @@ public class Measurement {
         return this.weight;
     }
 
+    public String getTime(){
+        return this.time;
+    }
+
     public LocalDate getDate(){
         return this.date;
     }
+
 
 
 }
